@@ -1,0 +1,34 @@
+# Ignore specified project dirs
+docker_sandbox/
+repo/
+script/
+temp/
+venv/
+output/log/
+output/error/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.python-version
+
+# Virtualenv files
+.env
+.venv
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs / runtime
+*.log
+*.pid
+*.sock
+
+# Specific files
+*.sif
