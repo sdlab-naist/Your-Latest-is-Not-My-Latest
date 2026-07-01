@@ -14,8 +14,8 @@ import time
 
 client = docker.from_env()
 
-TEMP_DIR = "/work/pakorn-l/clone-repo/research_dockerfile_using_latest_with_LFS/repo"
-BUILD_MEMORY_LIMIT = "16g"  # Max RAM+swap per docker build; set to None to disable
+TEMP_DIR = "TEMP_REPOS"  # Temporary directory for cloning repositories
+BUILD_MEMORY_LIMIT = None # Max RAM+swap per docker build; set to None to disable
 
 def setup_logging(output_dir, year):
     """Sets up logging to both file and console."""
