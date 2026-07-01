@@ -5,3 +5,7 @@ seaborn
 matplotlib
 requests
 docker
+python-dotenv
+openai
+anthropic
+google-genai

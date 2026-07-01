@@ -3,10 +3,10 @@ import argparse
 from collections import defaultdict
 
 def main(year):
-    json_file = f"output/build_check/filtered_latest_details_fixed_{year}.json"  # Replace with your actual JSON file name
-    #json_file = f"output/build_category/filtered_latest_details_{year}.json"  # Replace with your actual JSON file name
-    output_file = f"output/build_check/build_stats_summary_{year}.txt"  # Output file for the summary (optional)
-    #output_file = f"output/build_category/build_stats_summary_{year}.txt"  # Output file for the summary (optional)
+    # json_file = f"output/build_check/filtered_latest_details_fixed_{year}.json"  # Replace with your actual JSON file name
+    json_file = f"output/build_check/merge_all_error_filter/merge_filtered_latest_details_{year}.json"  # Replace with your actual JSON file name
+    # output_file = f"output/build_check/build_stats_summary_{year}.txt"  # Output file for the summary (optional)
+    output_file = f"output/build_check/merge_all_error_filter/merge_build_stats_summary_{year}.txt"  # Output file for the summary (optional)
 
     repo_success = 0
     repo_fail = 0
