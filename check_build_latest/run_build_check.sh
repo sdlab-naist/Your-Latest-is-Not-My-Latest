@@ -7,7 +7,7 @@ if [ -z "$1" ]; then
 fi
 
 YEAR="$1"
-ROOT_DIR="/work/pakorn-l/clone-repo/research_dockerfile_using_latest_with_LFS"
+ROOT_DIR="LOCAL_PATH"
 
 source "$ROOT_DIR/.venv/bin/activate"
 
@@ -16,8 +16,8 @@ ulimit -n 65536
 pip install -r "$ROOT_DIR/requirements.txt" -q
 
 python "$ROOT_DIR/check_build_latest/check_build_latest.py" \
-    --docker_user "kuruga" \
-    --docker_pass "Kurumi2545" \
+    --docker_user "DOCKERUSER" \
+    --docker_pass "DOCKERPASS" \
     --input_dir "$ROOT_DIR/output/latest_check" \
     --output_dir "$ROOT_DIR/output/build_check" \
     --year "$YEAR"

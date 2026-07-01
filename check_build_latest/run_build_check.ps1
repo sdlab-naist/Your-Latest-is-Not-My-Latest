@@ -16,8 +16,8 @@ $RootDir = Split-Path -Parent $ScriptDir
 pip install -r "$RootDir\requirements.txt" -q
 
 python "$RootDir\check_build_latest\check_build_latest_windows.py" `
-    --docker_user "kuruga" `
-    --docker_pass "Kurumi2545" `
+    --docker_user "DOCKERUSER" `
+    --docker_pass "DOCKERPASS" `
     --input_dir "$RootDir\output\latest_check" `
     --output_dir "$RootDir\output\build_check" `
     --repo_dir "$RootDir\repo" `
