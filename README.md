@@ -1,6 +1,6 @@
 # Your Latest is Not My Latest
 
-### Replication package for *"On the Prevalence and Repair of Time-Induced Docker Build Failures"*
+### Replication package for *"Your Latest Is Not My Latest! An Empirical Study of the latest Tag in Dockerfiles"*
 
 ![Overview of the study](figure/overview.png)
 
