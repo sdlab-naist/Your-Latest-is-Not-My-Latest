@@ -40,10 +40,10 @@ top-level directories:
 
 | Stage | Directory | Purpose |
 |-------|-----------|---------|
-| Data collection & `latest` identification (RQ0) | [`check_latest_in_dockerfile/`](check_latest_in_dockerfile/) | Clone repos, find Dockerfiles, detect unpinned `:latest` base images, track tag changes across releases |
-| Build process & buildability (RQ1) | [`check_build_latest/`](check_build_latest/) | Check out each repo at its latest release, build every Dockerfile, record success/failure |
-| Failure-cause analysis (RQ1 / RQ2) | [`classify/`](classify/) + `check_build_latest/*` | Classify failures as time-induced vs not, and by error category |
-| Automated repair (RQ3) | [`dockerfile_repair/`](dockerfile_repair/) | Ask LLMs (API or agentic CLI) to fix broken Dockerfiles, then rebuild to verify |
+| Data collection & `latest` identification (RQ1) | [`check_latest_in_dockerfile/`](check_latest_in_dockerfile/) | Clone repos, find Dockerfiles, detect unpinned `:latest` base images, track tag changes across releases |
+| Build process & buildability (RQ2) | [`check_build_latest/`](check_build_latest/) | Check out each repo at its latest release, build every Dockerfile, record success/failure |
+| Failure-cause analysis (RQ2 / RQ3) | [`classify/`](classify/) + `check_build_latest/*` | Classify failures as time-induced vs not, and by error category |
+| Automated repair (RQ4) | [`dockerfile_repair/`](dockerfile_repair/) | Ask LLMs (API or agentic CLI) to fix broken Dockerfiles, then rebuild to verify |
 
 ---
 
@@ -135,7 +135,7 @@ DOCKER_PASS=
 The stages are meant to run in order; each writes intermediate results under `output/` that
 later stages consume.
 
-### RQ0 — Identify Dockerfiles using `latest`
+### RQ1 — Identify Dockerfiles using `latest`
 
 ```bash
 python check_latest_in_dockerfile/check_latest_in_dockerfile.py \
@@ -156,7 +156,7 @@ python check_latest_in_dockerfile/check_change_tag.py \
 python check_latest_in_dockerfile/analysis_tag_change.py
 ```
 
-### RQ1/RQ2 — Build every Dockerfile
+### RQ2/RQ3 — Build every Dockerfile
 
 Clones each repo, checks out the target revision (see *Methodology* below), and builds each
 Dockerfile with `docker build --no-cache`. Builds that produce no output for 30 minutes are
@@ -187,7 +187,7 @@ python check_build_latest/compare_multiple_result_os.py --year 2026
 python check_build_latest/convert_stats_csv.py
 ```
 
-### Failure classification (RQ1/RQ2)
+### Failure classification (RQ2/RQ3)
 
 Label failures as time-induced or by error category. Both take an input CSV of failures and
 write a labeled CSV (arguments are positional: `input` then `output`):
@@ -197,7 +197,7 @@ python classify/time_induced.py   failures.csv time_induced_labeled.csv
 python classify/error_category.py failures.csv error_categorized.csv
 ```
 
-### RQ3 — Repair broken Dockerfiles with LLMs
+### RQ4 — Repair broken Dockerfiles with LLMs
 
 Reads a JSON file of broken builds (with their logs), asks the chosen model to fix each
 Dockerfile, then rebuilds it in the controlled environment to verify the fix.
