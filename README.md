@@ -53,12 +53,12 @@ top-level directories:
 .
 ├── input/
 │   └── repo_list.csv                 # Seed list of GitHub repos (owner/repo per line)
-├── check_latest_in_dockerfile/       # RQ0: detect `:latest` usage & tag changes
+├── check_latest_in_dockerfile/       # RQ1: detect `:latest` usage & tag changes
 │   ├── check_latest_in_dockerfile.py
 │   ├── check_release_version.py
 │   ├── check_change_tag.py
 │   └── analysis_tag_change.py
-├── check_build_latest/               # RQ1/RQ2: build & analyze
+├── check_build_latest/               # RQ2/RQ3: build & analyze
 │   ├── check_build_latest.py         # main build tester (Linux/macOS)
 │   ├── check_build_latest_windows.py # Windows variant
 │   ├── error_categorize.py
@@ -69,10 +69,10 @@ top-level directories:
 │   ├── compare_multiple_result_os.py
 │   ├── run_build_check.sh / .ps1     # convenience runners
 │   └── run_filter_and_summary.sh
-├── classify/                         # RQ1/RQ2: label failures
+├── classify/                         # RQ2/RQ3: label failures
 │   ├── time_induced.py               # time-induced vs non-time-induced
 │   └── error_category.py             # error-category classification
-├── dockerfile_repair/                # RQ3: LLM repair
+├── dockerfile_repair/                # RQ4: LLM repair
 │   ├── llm_repair.py                 # main repair driver (Linux/macOS)
 │   ├── llm_repair_windows.py         # Windows variant
 │   └── summarize_repair_os.py        # aggregate repair results → CSV
@@ -116,9 +116,9 @@ cp sample.env .env
 ```
 
 ```dotenv
-OPENAI_API_KEY=      # RQ3 repair with GPT / Codex
-ANTHROPIC_API_KEY=   # RQ3 repair with Claude / Claude Code
-GEMINI_API_KEY=      # RQ3 repair with Gemini
+OPENAI_API_KEY=      # RQ4 repair with GPT / Codex
+ANTHROPIC_API_KEY=   # RQ4 repair with Claude / Claude Code
+GEMINI_API_KEY=      # RQ4 repair with Gemini
 DOCKER_USER=         # optional: Docker Hub login to raise pull rate limits
 DOCKER_PASS=
 ```
